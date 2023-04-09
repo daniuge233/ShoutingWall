@@ -1,0 +1,56 @@
+html {
+    -webkit-user-select: none;
+    user-select: none;
+    /* min-height: 100vh; */
+    background: url('../images/backgrounds/bg1.png');
+    background-size: cover;
+    background-attachment: fixed;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+.title {
+    position: relative;
+    margin: auto;
+    font-size: 4.5vh;
+    font-weight: bold;
+}
+.content {
+    position: relative;
+    display: block;
+    font-size: 2.125vh;
+}
+.main-content {
+    position: relative;
+    display: block;
+    margin: auto;
+    border-radius: 2vw;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    display: block;
+    background-color: #663399;
+}
+#button {
+    position: absolute;
+    width: 5vw;
+    height: 4vh;
+    font-size: 1.75vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: none;
+    border-radius: 100000vw;
+    transition: all 0.15s;
+}
+#button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    transform: scale(1.15);
+    box-shadow: 0px 0px 2vh gray;
+}
+.back {
+    font-size: 2vh;
+    position: absolute;
+}

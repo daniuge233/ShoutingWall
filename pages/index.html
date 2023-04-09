@@ -1,0 +1,179 @@
+<!DOCTYPE UTF-8>
+<html>
+    <head>
+        <title>首页 | 瀚阳喊话墙</title>
+        <link rel="stylesheet" href="/css/template.css">
+    </head>
+
+    <body>
+        <div class="header">
+            <span class="title">瀚阳喊话墙</span>
+            <span id="top-container" class="top-container"><a id="tpc" class="reg" href="/pages/account/reg.html">注册</a> &nbsp;&nbsp; <a id="tpc" class="logi" href="/pages/account/login.html">登录</a></span>
+            <span><a class='about' href="/pages/about.html">关于本墙</a></span>
+            <span><a class="docs" href="/pages/tips/docs.html">开放文档</a></span>
+            <span><a class="create" href="/pages/write.html">新建文章</a></span>
+            <span class="copyr">©2023 daniuge233.</span>
+            <span><a id="ba" href="/">京ICP备 114514</a></span>
+        </div>
+    </body>
+</html>
+
+<style>
+    a {
+        opacity: 0;
+        z-index: 999;
+    }
+
+    .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 55vh;    
+        width: 100%;
+        text-align: center;
+        /* line-height: 15vh; */
+        background-image: url("*");
+        background-color: rgb(236, 236, 236);
+        opacity: 0;
+    }
+    .title {
+        letter-spacing: 2vw;
+        top: 18vh;
+        opacity: 0;
+
+        color: rgb(50, 50, 50);
+    }
+    .top-container {
+        display: block;
+        position: relative;
+        font-size: 3vh;
+        top: 17vh;
+    }
+    .header a {
+        font-size: 2.5vh;
+        color: rgb(90, 90, 90);
+        top: 20vh;
+    }
+    .about {
+        position: relative;
+        margin-right: 2vw;
+    }
+    .docs {
+        position: relative;
+        margin-right: 2vw;
+    }
+    .create {
+        position: relative;
+    }
+    .copyr {
+        position: absolute;
+        display: block;
+        left: 1vw;
+        top: 2vh;
+        font-size: 1.5vh;
+    }
+    #ba {
+        position: absolute;
+        display: block;
+        left: 10vw;
+        top: 2vh;
+        color: black;
+        font-size: 1.5vh;
+        font-weight: normal;
+        opacity: 1;
+    }
+
+    /* 这里是为显示的内容做的样式 */
+    .main-content {
+        transition: 0.25s;
+        position: relative;
+        top: 42.5vh;
+        opacity: 0.75;
+        margin-top: 20vh;
+        width: 50vw;
+        height: 30vh;
+    }
+    .main-content:hover {
+        transform: scale(1.025);
+    }
+    .content-title {
+        position: relative;
+        font-size: 4vh;
+        font-weight: bold;
+        top: 3.25vh;
+        left: 1.25vw;
+    }
+    .content-prev {
+        position: relative;
+        display: block;
+        top: 4.5vh;
+        left: 1.25vw;
+        font-size: 2.25vh;
+        word-break: break-all;
+        overflow: hidden;
+        height: 12vh;
+        width: 48vw;
+    }
+    .content-auth {
+        position: absolute;
+        display: block;
+        bottom: 3.5vh;
+        left: 1.25vw;
+        font-size: 2vh;
+        font-weight: bold;
+    }
+    .content-date {
+        position: absolute;
+        display: block;
+        bottom: 3.5vh;
+        right: 2vh;
+        font-size: 2vh;
+        font-weight: bold;
+    }
+
+    /* 底部留白 */
+    .bottom-container {
+        position: relative;
+        top: 70vh;
+        background-color: rgba(0, 0, 0, 0);
+        /* opacity: 0; */
+        width: 100%;
+        height: 1vh;
+    }
+
+    /* 未登录提示 */
+    .unLogined {
+        position: relative;
+        display: block;
+        top: 70vh;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        margin-bottom: 20vh;
+        font-size: 3vh;
+        text-align: center;
+    }
+</style>
+<script src='/js/jq.js'></script>
+<script>
+    $(document).ready(function() {
+        $('.title').animate({
+            top: "15vh",
+            opacity: 1
+        }, 250)
+
+        $('a').animate({
+            opacity: 1
+        })
+
+        $('.header').animate({
+            opacity: 0.65
+        }, "fast");
+
+        $('.create').animate({
+            opacity: 1
+        }, "fast")
+        // sendRequest();
+    })
+</script>

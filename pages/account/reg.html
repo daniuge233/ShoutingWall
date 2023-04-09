@@ -1,0 +1,114 @@
+<!DOCTYPE UTF-8>
+
+<html>
+    <head>
+        <title>登录 | 瀚阳喊话墙</title>
+        <link rel="stylesheet" href="/css/template.css">
+    </head>
+
+    <body>
+        <div class="main-content">
+            <span class="title">注册 | 瀚阳喊话墙</span>
+            <a class='haveAccount' href="/pages/account/login.html">已有账号? 点此登录</a>
+            <span class='input'>注册Token:<input id='token' type="password" placeholder='请输入您的注册Token'></span>
+            <span class='input'>密码:<input id='pwd' type="password" placeholder='请输入您的密码'></span>
+            <span class='input'>姓名:<input id='name' type="text" placeholder='请输入您的姓名'></span>
+            <input id="button" class='button' type="button" value="确认注册" onclick="login()">
+
+            <a class="back" href="/pages/index.html">[返回主页]</a>
+        </div>
+    </body>
+</html>
+
+<style>
+
+    .main-content {
+        top: 3vh;
+        width: 35vw;
+        height: 60vh;
+        opacity: 0;
+        text-align: center;
+    }
+
+    .title {
+        font-size: 1.5vw;
+        top: 5vh;
+    }
+
+    .haveAccount {
+        position: relative;
+        display: block;
+        top: 7vh;
+        font-size: 1.75vh;
+        color: black;
+        text-decoration: none;
+    }
+
+    .input {
+        display: block;
+        position: relative;
+        top: 12vh;
+        left: 0;
+        margin: auto;
+        margin-bottom: 7.15vh;
+        width: 15vw;
+        height: 3vh;
+        text-align: left;
+        font-size: 2.5vh;
+        transition: all 0.15s;
+    }
+
+    .input:hover {
+        transform: scale(1.075);
+    }
+
+    .input input {
+        width: 15vw;
+        height: 3.25vh;
+        background-color: rgba(0, 0, 0, 0.65);
+        border: none;
+        border-radius: 100vw;
+        text-align: center;
+        color: white;
+    }
+
+    #button {
+        margin: auto;
+        top: 45vh;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .back {
+        left: 3vw;
+        bottom: 6.5vh;
+    }
+</style>
+
+<script src='/js/jq.js'></script>
+<script>
+    $(document).ready(function() {
+        $('.main-content').animate({
+            top: "0vh",
+            opacity: 0.75   
+        }, 250)
+    })
+    
+    function login() {
+        var token = document.getElementById('token').value;
+        var pwd = document.getElementById('pwd').value;
+        var name = document.getElementById('name').value;
+        if (token != "" && pwd != "" && name != "") {
+            $.post('/api/reg', {"regToken":token, 'regPwd':pwd, 'name':name}, function(data, status, xhr) {
+                if (JSON.parse(data).Result == "false") {
+                    alert("注册Token错误");
+                } else {
+                    alert("注册成功！\n您的账号Token:" + JSON.parse(data).tk + ", 请记住这串数字, 登陆时需要这串数字");
+                }
+            });
+        } else {
+            alert("注册Token、密码或姓名为空!");
+        }
+    }
+</script>

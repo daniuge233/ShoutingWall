@@ -1,0 +1,105 @@
+<!DOCTYPE UTF-8>
+<html>
+    <head>
+        <title>新建文章 | 瀚阳喊话墙</title>
+        <link rel="stylesheet" href="/css/template.css">
+    </head>
+
+    <body>
+        <div class="main-content">
+            <span class="title">新建文章</span>
+            <input id="ipt_title" class="ipt" placeholder="请输入标题">
+            <textarea id="ipt" class="ipt" placeholder="请输入内容"></textarea>
+            <label class="isAnonymous">是否匿名<input id="isAnonymous" type="checkbox" placeholder="23"></label>
+            <button id="button" class="upload" onclick="a()">提交</button>
+            <span class="tips">如果您希望您的文章更加具有格式, 请阅读 <a href="/pages/tips/docs.html">[此处]</a></span>
+            <a href="/pages/index.html"><span class="back">[返回首页]</span></a>
+        </div>
+    </body>
+</html>
+
+<style>
+    .main-content {
+        opacity: 0;
+        width: 75vw;
+        height: 75vh;
+        top: 7vh;
+        text-align: center;
+    }
+    .title {
+        top: 3.5vh;
+    }
+    .ipt {
+        position: relative;
+        display: block;
+        top: 10vh;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 45vw;
+        height: 35vh;
+        background-color: rgba(0, 0, 0, 0.8);
+        border: none;
+        color: white;
+        font-size: 2vh;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    #ipt_title {
+        height: 4vh;
+        margin-bottom: 3vh;
+    }
+    .isAnonymous {
+        position: absolute;
+        top: 60vh;
+        left: 25vw;
+        font-size: 2vh;
+    }
+    #button {
+        top: 60vh;
+        right: 25vw;
+    }
+    .tips {
+        position: relative;
+        top: 20vh;
+        font-size: 1.75vh;
+    }
+    .back {
+        bottom: 7vh;
+        right: 7vw;
+    }
+</style>
+
+<script src="/js/jq.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.main-content').animate({
+            top: '0vh',
+            opacity: '0.75'
+        })
+    })
+    
+    function a() {
+        var content = document.getElementById('ipt').value;
+        var isAnonymous = document.getElementById('isAnonymous').checked;
+        var title = document.getElementById('ipt_title').value;
+        if (content == "" || isAnonymous == undefined || title == "") {
+            alert("标题、是否匿名或内容为空");
+            return;
+        }
+        $.post('/api/create_artical', {"Title":title, "Content":content.toString(), "isAnonymous":isAnonymous}, function(data, status, xhr) {
+            try {
+                var s = JSON.parse(data);
+                if (s.Result == "true") {
+                    alert("创建成功");
+                    return;
+                } else {
+                    alert("创建失败");
+                    return;
+                }
+            } catch {
+                alert("JSON转换出错, 回传信息: " + data);
+            }
+        });
+    }
+</script>

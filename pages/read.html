@@ -1,0 +1,101 @@
+<!DOCTYPE UTF_8>
+<html>
+    <head>
+        <title>详情 | 瀚阳喊话墙</title>
+        <link rel="stylesheet" href="/css/template.css">
+    </head>
+    <body>
+        <span class="main-content">
+            <span id="title" class="title"></span>
+            <div id="content" class="content"></div>
+            <span id="author" class="author"></span>
+            <span id="date" class="date"></span>
+            <a class="back" href="/pages/index.html">[返回主页]</a>
+        </span>
+    </body>
+</html>
+<style>
+    .main-content {
+        top: 3vh;
+        width: 75vw;
+        height: 65vh;
+        opacity: 0;
+    }
+
+    .title {
+        top: 6vh;
+        left: 3vw;
+    }
+    .content {
+        position: absolute;
+        display: block;
+        top: 16vh;
+        left: 3vw;
+        font-size: 2.5vh;
+        width: 70vw;
+        height: 33vh;
+        word-break: break-all;
+        overflow: hidden;
+    }
+    .author {
+        position: absolute;
+        bottom: 6vh;
+        left: 3vw;
+        font-size: 2.25vh;
+    }
+    .date {
+        position: absolute;
+        bottom: 10vh;
+        right: 3vw;
+        font-size: 2.25vh;
+    }
+    .back {
+        position: absolute;
+        right: 3vw;
+        bottom: 6vh;
+        font-size: 2.25vh;
+    }
+</style>
+<script src="/js/jq.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.main-content').animate({
+            top: "0vh",
+            opacity: 0.75   
+        }, 250)
+    })
+
+    window.onload = function() {
+        var param = getQueryString('artical_id');
+        if (param == '' || param == null) {
+            console.log('文章不存在');
+            location.replace('/pages/index.html')
+        } else {
+            $.post('/api/artical_full', {'artical_id':param.toString()}, function(data, status, xhr) {
+                var res = JSON.parse(data);
+                if (res.Result == 'false') {
+                    console.log("未登录或文章不存在");
+                    location.replace('/pages/index.html')
+                } else {
+                    var title = document.getElementById("title");
+                    var content = document.getElementById("content");
+                    var author = document.getElementById("author");
+                    var date = document.getElementById("date");
+                    title.innerHTML = res.title;
+                    content.innerHTML = res.content;
+                    author.innerHTML = res.author;
+                    date.innerHTML = res.date;
+                }
+            })
+        }
+    }
+
+    function getQueryString(name) {
+        let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        let r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return decodeURIComponent(r[2]);
+        };
+        return null;
+    }
+</script>
