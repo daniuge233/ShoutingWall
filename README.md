@@ -51,4 +51,5 @@ MacOS和Linux的方法类似且同理。<br/>
 - ......
 
 --------
-©2023 daniuge233.
+©2023 daniuge233.<br/>
+images/backgrounds/bg1.png来源于网络, 侵删。
