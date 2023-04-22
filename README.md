@@ -6,7 +6,7 @@
 
 这是一个基于Node.js开发的网站, 已注册登录的用户可以在此发布一些内容并查看他人发布的内容。<br/>
 
-![头图] images/backgrounds/fm.png
+![hm](./images/backgrounds/fm.png)
 
 --------
 ### 特性
